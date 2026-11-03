@@ -1,0 +1,12 @@
+
+apiVersion: v1
+kind: Node
+
+metadata:
+  name: kcna-cka-lab-worker2
+  
+spec:
+  taints:
+    - key: dedicated
+      value: especial
+      effect: NoSchedule

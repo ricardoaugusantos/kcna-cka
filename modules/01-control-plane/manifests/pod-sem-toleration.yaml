@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: pod-sem-toleration
+  namespace: default
+
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: kcna-cka-lab-worker2
+
+  containers:
+    - name: nginx
+      image: nginx:stable
+      ports:
+        - containerPort: 80

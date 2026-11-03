@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx-lab
+  namespace: default
+
+spec:
+  replicas: 5
+
+  selector:
+    matchLabels:
+      apps: nginx-lab
+
+  template:
+    metadata:
+      labels:
+        apps: nginx-lab
+
+
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: kcna-cka-lab-worker2
+
+      containers:
+        - name: nginx
+          image: nginx:stable
+          ports:
+            - containerPort: 80
