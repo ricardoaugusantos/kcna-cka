@@ -101,3 +101,47 @@ kubectl apply --dry-run=server -f modules/01-control-plane/manifests/deployment.
 - [Documentacao oficial do Kubernetes](https://kubernetes.io/docs/)
 - [Kind](https://kind.sigs.k8s.io/)
 - [CNCF](https://www.cncf.io/)
+
+
+## Módulo 02 — Services, DNS e Networking
+
+**Status:** Exercícios 13 a 19 concluídos.
+
+### Conceitos praticados
+
+- Criação de Services por manifestos YAML.
+- Services `ClusterIP`, `NodePort` e `LoadBalancer`.
+- Seleção de Pods por labels e selectors.
+- Descoberta de endpoints com EndpointSlices.
+- Resolução DNS pelo CoreDNS.
+- Comunicação HTTP entre Pods.
+- Comunicação entre namespaces usando FQDN.
+- Acesso via NodePort em diferentes Workers.
+- Diagnóstico de `EXTERNAL-IP: <pending>` no Kind.
+
+### Recursos criados
+
+| Recurso | Tipo | Finalidade |
+|---|---|---|
+| nginx-svc | ClusterIP | Comunicação interna |
+| nginx-nodeport | NodePort | Acesso pela porta 30080 dos nós |
+| nginx-loadbalancer | LoadBalancer | Simulação de balanceador externo |
+| network-client | Pod | Testes de DNS e HTTP |
+| financeiro | Namespace | Testes entre namespaces |
+| financeiro-client | Pod | Cliente em outro namespace |
+
+### Resultados observados
+
+- CoreDNS resolveu `nginx-svc.default.svc.cluster.local`.
+- O Service encaminhou conexões aos cinco Pods Nginx.
+- O cliente no namespace `financeiro` acessou o Service no namespace `default`.
+- O NodePort `30080` funcionou pelos IPs de ambos os Workers.
+- O LoadBalancer permaneceu com IP externo pendente, pois não há controlador de LoadBalancer configurado no cluster Kind.
+
+### Próxima etapa
+
+**Exercício 20 — NetworkPolicy**
+
+Estudar políticas de entrada e saída, isolamento de Pods e controle de tráfego entre namespaces.
+
+Para testar o bloqueio real, será necessário utilizar um CNI que implemente NetworkPolicy, como Calico ou Cilium.
