@@ -1,0 +1,40 @@
+# Credenciais e configuracoes locais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.kubeconfig
+kubeconfig
+kubeconfig.*
+**/.kube/
+
+# Arquivos locais de editores e sistema
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs, temporarios e artefatos
+*.log
+*.tmp
+*.bak
+*.orig
+*.retry
+*.tfstate
+*.tfstate.*
+.terraform/
+__pycache__/
+*.pyc
+
+# Saidas geradas para o laboratorio
+artifacts/
+outputs/
+tmp/
